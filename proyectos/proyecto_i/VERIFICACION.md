@@ -15,7 +15,7 @@ Fecha: **13 de octubre de 2026**. Referencia: [enunciado del profesor](https://g
 | AAA, assert, raises, parametrize, fixture | Aplicados en la suite; fixtures en memoria y `tmp_path` |
 | ≥1 integración | **3 tests de integración**, sin red; incluye checkpoint 140/10 y ambas CLI |
 | CI para ambas partes | `.github/workflows/ci.yml`, Python 3.12, push a main y pull_request, gate 60 % |
-| GitHub Actions en verde | Run [38430807165](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38430807165): 98 tests y 99,25 % de cobertura |
+| GitHub Actions en verde | Run [38464158185](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38464158185): 98 tests y 99,25 % de cobertura |
 | Documentación de ejecución y tests | `proyectos/proyecto_i/README.md` |
 | Datos grandes y secretos excluidos de Git | Descargas y resultados ignorados; los scripts usan el perfil local de Alpaca |
 | Historial Git | Commits separados para ventas/tests, acciones/tests y documentación/CI |
@@ -59,3 +59,5 @@ La Parte B utiliza el CSV de diez símbolos descargado el 29 de septiembre, con 
 `>>` La copia `data/ventas.csv` coincide con el CSV de la práctica. El checkpoint sigue siendo 140/10. La leyenda se aplica a los README y a los comentarios y docstrings de la entrega.
 
 `=>` La estructura reorganizada pasa **98 tests y 99,25 % de cobertura**, desde la raíz y desde esta carpeta. Las CLI mantienen **140/10 ventas** y **21.960/0 barras**. Los tres scripts de ventas de clase funcionan con las rutas nuevas y los tests de ejemplo del Tema 2 obtienen **7 passed**. Los enlaces locales de los cuatro README se comprobaron.
+
+`>>` Se descargó y comprobó la copia pública del commit `c05c9d6839d0c80d3cdef51b21c1f376f3a6233a`: estructura, cuatro README, enlaces y exclusión de los datos de mercado correctos; **98 tests y 99,25 % de cobertura** desde la carpeta de la entrega. El run [38464158185](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38464158185) confirmó **success** en Ubuntu / Python 3.12 con el nuevo directorio de ejecución del workflow.

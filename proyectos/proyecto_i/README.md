@@ -158,7 +158,7 @@ pytest --cov=ventas_app --cov=acciones_app --cov-report=term-missing --cov-fail-
 
 `>>` Ejecuciones y evidencia: [GitHub Actions](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/workflows/ci.yml).
 
-`=>` Run verde anterior a la reorganización del **13 de octubre de 2026**: [38431024130](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38431024130), con **98 tests** y **99,25 % de cobertura** en Ubuntu / Python 3.12. Checklist de comprobaciones: [VERIFICACION.md](VERIFICACION.md).
+`=>` Run verde de la reorganización del **13 de octubre de 2026**: [38464158185](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38464158185), con **98 tests** y **99,25 % de cobertura** en Ubuntu / Python 3.12. Checklist de comprobaciones: [VERIFICACION.md](VERIFICACION.md).
 
 ## Desarrollo por fechas
 
