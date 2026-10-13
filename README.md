@@ -127,6 +127,8 @@ Workflow: [.github/workflows/ci.yml](.github/workflows/ci.yml), adaptado de la p
 
 Ejecuciones y evidencia: [GitHub Actions](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/workflows/ci.yml).
 
+Run verde confirmado el **13 de octubre de 2026**: [38426844375](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38426844375), con **78 tests** y **99,20 % de cobertura** en Ubuntu / Python 3.12. Checklist de comprobaciones: [VERIFICACION.md](proyectos/proyecto_i/VERIFICACION.md).
+
 ## Historial de clase
 
 - **7 septiembre:** creación del repositorio, `.gitignore`, dependencias y rama `practica/sesion-01`.

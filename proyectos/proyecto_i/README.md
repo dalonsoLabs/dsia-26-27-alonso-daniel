@@ -8,6 +8,7 @@ La implementación está en la raíz del repositorio para conservar los puntos d
 - [README de ejecución, validación, métricas y CI](../../README.md).
 - [Enunciado del profesor](https://github.com/dmartincc/dsia-26-27/blob/main/proyectos/proyecto_i/README.md), copiado en [`INSTRUCTIONS.md`](INSTRUCTIONS.md).
 - [Procedencia y script reproducible del dataset B](ALPACA.md).
+- [Checklist y evidencia de tests, cobertura y CI](VERIFICACION.md).
 
 Desde la raíz, activar `.venv` y ejecutar:
 
