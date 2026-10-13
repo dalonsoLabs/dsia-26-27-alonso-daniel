@@ -1,7 +1,7 @@
 # Proyecto I — Programación avanzada en Python (10 %)
 
-**Temas:** 1 (y pytest + CI del Tema 2)  
-**Presentación / arranque en clase:** 14 de septiembre de 2026  
+**Temas:** 1 (y pytest + CI del Tema 2)
+**Presentación / arranque en clase:** 14 de septiembre de 2026
 **Entrega orientativa:** tras la sesión de pytest/CI (**28 sep 2026**), salvo indicación distinta en aula.
 
 ## Objetivo
@@ -123,7 +123,7 @@ proyecto_i/
 
 ## Tests unitarios (obligatorio en A y B)
 
-Referencia de clase: `2_pruebas_y_despliegue/01_pytest_intro.md` y `ejercicios/E3_pytest.md`.  
+Referencia de clase: `2_pruebas_y_despliegue/01_pytest_intro.md` y `ejercicios/E3_pytest.md`.
 CI (siguiente bloque): `2_pruebas_y_despliegue/02_ci_github.md` y `ejercicios/E4_ci_github.md`.
 
 ### Cobertura obligatoria por módulo (A y B)

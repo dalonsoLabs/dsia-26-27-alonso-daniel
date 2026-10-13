@@ -127,10 +127,6 @@ Workflow: [.github/workflows/ci.yml](.github/workflows/ci.yml), adaptado de la p
 
 Ejecuciones y evidencia: [GitHub Actions](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/workflows/ci.yml).
 
-## Uso de IA
-
-Se ha utilizado **[OpenAI Codex](https://openai.com/codex/)** como asistente de desarrollo para revisar el enunciado, preparar los descargadores de Alpaca, implementar la Parte B, generar y ajustar tests y redactar documentación y CI. Intervenciones: 29 de septiembre y 13 de octubre de 2026; petición principal: «termina de completar los requisitos de proyecto_I». El código generado se ha contrastado con el material del profesor y comprobado mediante ejecución local y CI. Esta referencia documenta el uso de IA; la autorización de ese uso depende de las normas de la actividad.
-
 ## Historial de clase
 
 - **7 septiembre:** creación del repositorio, `.gitignore`, dependencias y rama `practica/sesion-01`.
