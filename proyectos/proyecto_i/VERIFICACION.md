@@ -15,7 +15,7 @@ Fecha: **13 de octubre de 2026**. Referencia: [enunciado del profesor](https://g
 | AAA, assert, raises, parametrize, fixture | Aplicados en la suite; fixtures en memoria y `tmp_path` |
 | ≥1 integración | **3 tests de integración**, sin red; incluye checkpoint 140/10 y ambas CLI |
 | CI para ambas partes | `.github/workflows/ci.yml`, Python 3.12, push a main y pull_request, gate 60 % |
-| GitHub Actions en verde | Run [38426844375](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38426844375): 78 tests y 99,20 % de cobertura |
+| GitHub Actions en verde | Run [38430807165](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38430807165): 98 tests y 99,25 % de cobertura |
 | Documentación de ejecución y tests | README raíz y `proyectos/proyecto_i/README.md` |
 | Datos grandes y secretos excluidos de Git | Descargas y resultados ignorados; los scripts usan el perfil local de Alpaca |
 | Historial Git | Commits separados para ventas/tests, acciones/tests y documentación/CI |
@@ -41,6 +41,8 @@ Publicación completada en `main`. El run [38426844375](https://github.com/dalon
 ## Revisión posterior a la publicación pública
 
 Se corrigieron y comprobaron valores infinitos e importes no representables en ventas, errores de codificación CSV/JSON, lectura de `.JSONL.GZ` y colisiones entre entrada y salidas de ambas CLI. Las pruebas verifican la conservación del archivo original, incluidos enlaces simbólicos y duros. La suite ampliada obtiene **98 tests en verde** y **99,25 % de cobertura**. Los enlaces locales de la documentación se comprobaron y no se encontraron claves privadas ni tokens de GitHub o literales de credenciales Alpaca con los patrones revisados en archivos versionados. Las carpetas de datos publicadas contienen únicamente sus `.gitignore`.
+
+La API de GitHub confirmó acceso público sin autenticación. Se descargó el archivo fuente público del commit `3c4d0621659aae8e136491620359ab540fcf125b` y se ejecutó la suite desde ese directorio limpio con el intérprete Python 3.12.13 del entorno local: **98 tests en verde** y **99,25 % de cobertura**. No dependió del enlace local `Datos` ni de archivos sin versionar. El mismo commit obtuvo **success** en Ubuntu / Python 3.12 en el run [38430807165](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38430807165).
 
 El descargador se ejecutó de nuevo contra la API el **13 de octubre de 2026**, con los diez símbolos y el intervalo documentados, usando un directorio temporal. Completó **3 páginas** y obtuvo **21.960 barras**, todas válidas. El manifiesto registró `2026-10-13T16:27:38.681713+00:00`, feed SIP y ajuste por splits. Esta comprobación adicional no sustituye la fecha de descarga del dataset original.
 
