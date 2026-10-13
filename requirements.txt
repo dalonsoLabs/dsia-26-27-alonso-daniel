@@ -8,8 +8,9 @@
 #   python -m pip install -r requirements.txt
 
 # --- Runtime: paquetes que importa el código (Tema 1 / Proyecto I) ---
-pandas>=2.2
+pandas==3.0.5
 
 # --- Desarrollo: no los importa la aplicación, sí el flujo de trabajo ---
-pytest>=8.0        # tests (sesión 29 sep); exigido por check_entorno.py --strict
-ipykernel>=6.29    # kernel de los notebooks dentro de .venv
+pytest==9.1.1
+pytest-cov==7.1.0
+ipykernel==7.3.0    # kernel de los notebooks dentro de .venv
