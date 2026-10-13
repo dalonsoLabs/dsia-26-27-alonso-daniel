@@ -1,4 +1,4 @@
-"""Espera a los descargadores activos y reintenta las colecciones incompletas.
+"""-> Espera a los descargadores activos y reintenta las colecciones incompletas.
 
 Ejecutar desde la carpeta proyecto_i con `nohup python3 -u continuar_alpaca.py
 > data/raw/masivo/supervisor.log 2>&1 &`. No almacena credenciales.

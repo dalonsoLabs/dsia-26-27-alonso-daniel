@@ -1,16 +1,3 @@
-# DSIA 2026-2027 — Alonso Gómez, Daniel
-# Dependencias directas del repositorio. Python 3.12 (ver .venv/pyvenv.cfg).
-#
-# Instalación:
-#   python3.12 -m venv .venv
-#   source .venv/bin/activate          # Windows: .venv\Scripts\activate
-#   python -m pip install --upgrade pip
-#   python -m pip install -r requirements.txt
-
-# --- Runtime: paquetes que importa el código (Tema 1 / Proyecto I) ---
-pandas==3.0.5
-
-# --- Desarrollo: no los importa la aplicación, sí el flujo de trabajo ---
-pytest==9.1.1
-pytest-cov==7.1.0
-ipykernel==7.3.0    # kernel de los notebooks dentro de .venv
+# -> Instalar el entorno compartido de las prácticas y del Proyecto I.
+# >> Las versiones directas se mantienen en la carpeta de la entrega.
+-r proyectos/proyecto_i/requirements.txt

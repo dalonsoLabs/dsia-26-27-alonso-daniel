@@ -1,0 +1,9 @@
+# -> Dependencias directas del Proyecto I y las prácticas. Python 3.12.
+# > Instalar con python -m pip install -r requirements.txt desde esta carpeta.
+# >> pandas es la dependencia de runtime de ambos pipelines.
+pandas==3.0.5
+
+# >> pytest y pytest-cov comprueban los tests y la cobertura.
+pytest==9.1.1
+pytest-cov==7.1.0
+ipykernel==7.3.0    # > Ejecutar los notebooks de clase con el entorno activo.

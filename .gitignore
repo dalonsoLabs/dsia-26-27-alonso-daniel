@@ -27,3 +27,6 @@ build/
 .idea/
 .vscode/
 *.swp
+
+# >> Salida regenerable de la práctica de pandas.
+1_programacion_avanzada_python/Datos/ventas_limpias.csv

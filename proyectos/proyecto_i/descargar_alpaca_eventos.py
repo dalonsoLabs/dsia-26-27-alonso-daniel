@@ -1,4 +1,4 @@
-"""Descarga reanudable de noticias y acciones corporativas con la CLI de Alpaca."""
+"""-> Descarga reanudable de noticias y acciones corporativas con la CLI de Alpaca."""
 
 from __future__ import annotations
 

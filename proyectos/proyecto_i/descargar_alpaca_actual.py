@@ -1,4 +1,4 @@
-"""Capturas actuales y códigos de referencia de acciones de EE. UU. con Alpaca CLI.
+"""-> Capturas actuales y códigos de referencia de acciones de EE. UU. con Alpaca CLI.
 
 Una captura es una observación puntual, no un histórico. Solo se consultan
 activos vigentes no OTC, pues los inactivos no tienen cotización actual.

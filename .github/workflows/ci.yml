@@ -1,4 +1,4 @@
-# Adaptación de 2_pruebas_y_despliegue/ejemplos/ci_proyecto_i.yml.
+# ~> Adaptación de la plantilla del profesor para ejecutar ambas partes desde su carpeta.
 name: proyecto-i-ci
 
 on:
@@ -9,6 +9,10 @@ on:
 
 permissions:
   contents: read
+
+defaults:
+  run:
+    working-directory: proyectos/proyecto_i
 
 jobs:
   test:

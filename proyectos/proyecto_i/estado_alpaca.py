@@ -1,4 +1,4 @@
-"""Muestra el avance de las descargas de Alpaca a partir de archivos terminados."""
+"""-> Muestra el avance de las descargas de Alpaca a partir de archivos terminados."""
 
 from __future__ import annotations
 

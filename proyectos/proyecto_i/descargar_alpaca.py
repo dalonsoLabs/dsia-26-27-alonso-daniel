@@ -1,4 +1,4 @@
-"""Descarga barras históricas de acciones con la CLI oficial de Alpaca.
+"""-> Descarga barras históricas de acciones con la CLI oficial de Alpaca.
 
 Requiere una sesión creada previamente con ``alpaca profile login``.
 Guarda un CSV para pandas y un JSONL que conserva todos los campos de la API.

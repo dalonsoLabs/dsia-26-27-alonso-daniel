@@ -1,4 +1,4 @@
-"""Descarga reanudable de barras y subastas de activos de EE. UU. mediante Alpaca.
+"""-> Descarga reanudable de barras y subastas de activos de EE. UU. mediante Alpaca.
 
 Cada lote se escribe en JSONL comprimido y recibe un manifiesto solo al completarse.
 Los activos OTC se excluyen porque el perfil normal no tiene acceso a su feed.
@@ -151,7 +151,7 @@ def batch(args: argparse.Namespace, number: int, symbols: list[str]) -> dict:
                         count += 1
                         by_symbol[symbol] += 1
                 token = response.get("next_page_token")
-                time.sleep(0.35)  # por debajo de 200 llamadas/minuto del plan Basic
+                time.sleep(0.35)  # ~> por debajo de 200 llamadas/minuto del plan Basic
                 if not token:
                     break
                 if not isinstance(token, str) or token in seen_tokens:
