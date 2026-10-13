@@ -48,9 +48,9 @@ python -m ventas_app.cli \
   --output proyectos/proyecto_i/data/processed/ventas.csv
 ```
 
-El loader admite CSV y una lista de objetos JSON. El validador requiere las columnas `region`, `producto`, `unidades`, `precio_unitario` y `cliente_id`, convierte los valores numéricos y rechaza unidades o precios nulos, no numéricos o no positivos. Calcula `importe = unidades × precio_unitario` sobre las filas válidas. El CSV del curso produce **140 válidas y 10 inválidas**, comprobadas en un test de integración.
+El loader admite CSV y una lista de objetos JSON. El validador requiere las columnas `region`, `producto`, `unidades`, `precio_unitario` y `cliente_id`, convierte los valores numéricos y rechaza unidades o precios nulos, no numéricos, no finitos o no positivos. Calcula `importe = unidades × precio_unitario` y comprueba que el resultado sea finito y positivo. El CSV del curso produce **140 válidas y 10 inválidas**, comprobadas en un test de integración.
 
-La CLI escribe `ventas.csv` y `ventas_invalidas.csv`, este último con el motivo de rechazo. Muestra las métricas de importe por región, top 3 productos por importe y clientes con más de una compra válida. Las rutas inexistentes, los formatos no soportados, los esquemas incorrectos y los errores de escritura terminan con código 1.
+La CLI escribe `ventas.csv` y `ventas_invalidas.csv`, este último con el motivo de rechazo. Muestra las métricas de importe por región, top 3 productos por importe y clientes con más de una compra válida. Las rutas inexistentes, los formatos no soportados, los esquemas incorrectos y los errores de lectura o escritura terminan con código 1. Ambas CLI rechazan rutas de salida que sobrescribirían el archivo de entrada, también mediante enlaces simbólicos o duros.
 
 Diseño OOP: [ventas_app/DESIGN.md](ventas_app/DESIGN.md). Los repositorios CSV y JSON implementan el contrato `SalesRepository`; las métricas reciben únicamente ventas validadas.
 
@@ -119,7 +119,7 @@ pytest --cov=ventas_app --cov=acciones_app --cov-report=term-missing --cov-fail-
 
 Hay tests de `loader`, `validator`, `metrics` y `cli` en ambas partes. Se usan fixtures en memoria y `tmp_path`, Arrange/Act/Assert, `pytest.raises` y `parametrize`. Los tests de integración comprueban el CSV del curso (140/10) y los puntos de entrada `python -m ...` con archivos temporales; no acceden a la red ni usan rutas propias de una máquina.
 
-Verificación local del 13 de octubre de 2026: **78 tests en verde**, de los cuales 3 son de integración, y **99,20 % de cobertura conjunta**. Las CLI procesaron también el CSV real de ventas (140/10) y el CSV descargado de Alpaca (21.960 válidas, 0 inválidas).
+Verificación local del 13 de octubre de 2026: **98 tests en verde**, de los cuales 3 son de integración, y **99,25 % de cobertura conjunta**. Incluyen regresiones para valores infinitos, importes no representables, errores de codificación, extensiones gzip en mayúsculas y protección del archivo de entrada. Las CLI procesaron también el CSV real de ventas (140/10) y el CSV descargado de Alpaca (21.960 válidas, 0 inválidas).
 
 ## CI
 
@@ -127,7 +127,7 @@ Workflow: [.github/workflows/ci.yml](.github/workflows/ci.yml), adaptado de la p
 
 Ejecuciones y evidencia: [GitHub Actions](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/workflows/ci.yml).
 
-Run verde confirmado el **13 de octubre de 2026**: [38426844375](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38426844375), con **78 tests** y **99,20 % de cobertura** en Ubuntu / Python 3.12. Checklist de comprobaciones: [VERIFICACION.md](proyectos/proyecto_i/VERIFICACION.md).
+Primer run verde confirmado el **13 de octubre de 2026**: [38426844375](https://github.com/dalonsoLabs/dsia-26-27-alonso-daniel/actions/runs/38426844375), con **78 tests** y **99,20 % de cobertura** en Ubuntu / Python 3.12. Checklist de comprobaciones y revisión posterior: [VERIFICACION.md](proyectos/proyecto_i/VERIFICACION.md).
 
 ## Historial de clase
 

@@ -32,7 +32,7 @@ class CsvSalesRepository:
 
         try:
             return pd.read_csv(self._path)
-        except (OSError, pd.errors.ParserError, pd.errors.EmptyDataError) as error:
+        except (OSError, UnicodeError, pd.errors.ParserError, pd.errors.EmptyDataError) as error:
             raise DataLoadError(f"No se pudo leer el CSV: {self._path}") from error
 
 
@@ -49,7 +49,7 @@ class JsonSalesRepository:
         try:
             with self._path.open(encoding="utf-8") as sales_file:
                 records = json.load(sales_file)
-        except (OSError, json.JSONDecodeError) as error:
+        except (OSError, UnicodeError, json.JSONDecodeError) as error:
             raise DataLoadError(f"No se pudo leer el JSON: {self._path}") from error
 
         if not isinstance(records, list):

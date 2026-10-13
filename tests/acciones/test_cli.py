@@ -65,6 +65,25 @@ def test_cli_output_error_is_controlled(tmp_path, bars_frame):
     assert error.value.code == 1
 
 
+@pytest.mark.parametrize("collision", ["direct", "invalidas", "rentabilidad", "volumen", "volatilidad", "symlink", "hardlink"])
+def test_cli_preserves_source_on_output_collision(tmp_path, bars_frame, collision):
+    reports = {"invalidas", "rentabilidad", "volumen", "volatilidad"}
+    source = tmp_path / (f"clean_{collision}.csv" if collision in reports else "source.csv")
+    bars_frame.to_csv(source, index=False)
+    original = source.read_bytes()
+    output = source if collision == "direct" else tmp_path / "clean.csv"
+    if collision == "symlink":
+        output.symlink_to(source)
+    elif collision == "hardlink":
+        output.hardlink_to(source)
+    with pytest.raises(SystemExit) as error:
+        main(["--input", str(source), "--output", str(output)])
+    assert error.value.code == 1
+    assert source.read_bytes() == original
+    if collision in reports:
+        assert not output.exists()
+
+
 @pytest.mark.integration
 def test_python_module_entrypoint(tmp_path, bars_frame):
     source = tmp_path / "synthetic.csv"

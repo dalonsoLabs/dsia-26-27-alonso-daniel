@@ -28,11 +28,17 @@ def main(argv: list[str] | None = None) -> None:
     arguments = parse_arguments(argv)
 
     try:
+        invalid_path = arguments.output.with_name(arguments.output.stem + "_invalidas.csv")
+        for destination in (arguments.output, invalid_path):
+            if destination.resolve() == arguments.input.resolve() or (
+                destination.exists() and arguments.input.exists()
+                and destination.samefile(arguments.input)
+            ):
+                raise ValidationError("Una salida sobrescribiría el fichero de entrada.")
         sales = load(arguments.input)
         valid_sales, invalid_sales = validate_sales(sales)
         arguments.output.parent.mkdir(parents=True, exist_ok=True)
         valid_sales.to_csv(arguments.output, index=False)
-        invalid_path = arguments.output.with_name(arguments.output.stem + "_invalidas.csv")
         invalid_sales.to_csv(invalid_path, index=False)
     except (DataLoadError, ValidationError, OSError) as error:
         LOGGER.error("No se pudo procesar la entrada: %s", error)

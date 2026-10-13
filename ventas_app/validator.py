@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from math import isfinite
+
 import pandas as pd
 
 
@@ -24,14 +26,14 @@ def validate_sales(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     sales["unidades"] = pd.to_numeric(sales["unidades"], errors="coerce")
     sales["precio_unitario"] = pd.to_numeric(sales["precio_unitario"], errors="coerce")
 
-    valid_units = sales["unidades"].gt(MINIMUM_POSITIVE_VALUE)
-    valid_prices = sales["precio_unitario"].gt(MINIMUM_POSITIVE_VALUE)
-    valid_mask = valid_units & valid_prices
+    valid_units = sales["unidades"].gt(MINIMUM_POSITIVE_VALUE) & sales["unidades"].abs().lt(float("inf"))
+    valid_prices = sales["precio_unitario"].gt(MINIMUM_POSITIVE_VALUE) & sales["precio_unitario"].abs().lt(float("inf"))
+    amounts = sales["unidades"].astype(float) * sales["precio_unitario"].astype(float)
+    valid_amounts = amounts.gt(MINIMUM_POSITIVE_VALUE) & amounts.abs().lt(float("inf"))
+    valid_mask = valid_units & valid_prices & valid_amounts
 
     valid_sales = sales.loc[valid_mask].copy()
-    valid_sales["importe"] = (
-        valid_sales["unidades"] * valid_sales["precio_unitario"]
-    )
+    valid_sales["importe"] = amounts.loc[valid_mask]
 
     invalid_sales = sales.loc[~valid_mask].copy()
     invalid_sales["motivo"] = _invalid_reasons(invalid_sales)
@@ -43,9 +45,13 @@ def _invalid_reasons(invalid_sales: pd.DataFrame) -> pd.Series:
     reasons: list[str] = []
     for row in invalid_sales.itertuples(index=False):
         row_reasons: list[str] = []
-        if pd.isna(row.unidades) or row.unidades <= MINIMUM_POSITIVE_VALUE:
+        if pd.isna(row.unidades) or not isfinite(row.unidades) or row.unidades <= MINIMUM_POSITIVE_VALUE:
             row_reasons.append("unidades inválidas")
-        if pd.isna(row.precio_unitario) or row.precio_unitario <= MINIMUM_POSITIVE_VALUE:
+        if pd.isna(row.precio_unitario) or not isfinite(row.precio_unitario) or row.precio_unitario <= MINIMUM_POSITIVE_VALUE:
             row_reasons.append("precio_unitario inválido")
+        if not row_reasons:
+            amount = float(row.unidades) * float(row.precio_unitario)
+            if not isfinite(amount) or amount <= MINIMUM_POSITIVE_VALUE:
+                row_reasons.append("importe inválido")
         reasons.append("; ".join(row_reasons))
     return pd.Series(reasons, index=invalid_sales.index, dtype="object")

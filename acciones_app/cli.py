@@ -34,6 +34,14 @@ def main(argv: list[str] | None = None) -> None:
             "volumen": metrics.average_volume_by_symbol(valid),
             "volatilidad": metrics.volatility_by_symbol(valid),
         }
+        destinations = [args.output, *(
+            args.output.with_name(f"{args.output.stem}_{name}.csv") for name in reports
+        )]
+        for destination in destinations:
+            if destination.resolve() == args.input.resolve() or (
+                destination.exists() and args.input.exists() and destination.samefile(args.input)
+            ):
+                raise ValidationError("Una salida sobrescribiría el fichero de entrada.")
         args.output.parent.mkdir(parents=True, exist_ok=True)
         valid.to_csv(args.output, index=False)
         for name, report in reports.items():

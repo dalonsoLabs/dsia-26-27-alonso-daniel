@@ -20,13 +20,24 @@ def test_valid_invalid_amount_and_no_mutation(sales_frame):
 
 
 @pytest.mark.parametrize("column", ["unidades", "precio_unitario"])
-@pytest.mark.parametrize("value, expected", [(0, 0), (-1, 0), (None, 0), ("mal", 0), (1, 1)])
+@pytest.mark.parametrize("value, expected", [(0, 0), (-1, 0), (None, 0), ("mal", 0), (float("inf"), 0), (-float("inf"), 0), (1, 1)])
 def test_numeric_boundaries(sales_frame, column, value, expected):
     frame = sales_frame.iloc[:1].copy().astype({column: "object"})
     frame.loc[0, column] = value
     valid, invalid = validate_sales(frame)
     assert len(valid) == expected
     assert len(invalid) == 1 - expected
+    if not expected:
+        assert column in invalid.iloc[0]["motivo"]
+
+
+@pytest.mark.parametrize("units, price", [(1e308, 1e308), (1e-300, 1e-300)])
+def test_unrepresentable_amount_is_rejected(sales_frame, units, price):
+    frame = sales_frame.iloc[:1].copy().astype({"unidades": float, "precio_unitario": float})
+    frame.loc[0, ["unidades", "precio_unitario"]] = [units, price]
+    valid, invalid = validate_sales(frame)
+    assert valid.empty
+    assert invalid.iloc[0]["motivo"] == "importe inválido"
 
 
 def test_missing_columns(sales_frame):

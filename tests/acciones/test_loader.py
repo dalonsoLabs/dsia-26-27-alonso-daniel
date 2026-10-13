@@ -15,9 +15,10 @@ def test_csv_load(tmp_path, bars_frame):
     pd.testing.assert_frame_equal(load(path), bars_frame, check_dtype=False)
 
 
-@pytest.mark.parametrize("compressed", [False, True])
-def test_jsonl_normalizes_api_fields(tmp_path, bars_frame, compressed):
-    path = tmp_path / ("bars.jsonl.gz" if compressed else "bars.jsonl")
+@pytest.mark.parametrize("suffix", ["jsonl", "jsonl.gz", "JSONL.GZ"])
+def test_jsonl_normalizes_api_fields(tmp_path, bars_frame, suffix):
+    compressed = suffix.lower().endswith(".gz")
+    path = tmp_path / f"bars.{suffix}"
     reverse = {value: key for key, value in API_FIELDS.items()}
     opener = gzip.open if compressed else open
     with opener(path, "wt", encoding="utf-8") as sink:

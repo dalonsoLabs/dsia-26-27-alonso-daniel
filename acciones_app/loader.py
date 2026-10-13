@@ -47,7 +47,7 @@ class JsonlBarsRepository:
 
     def load(self) -> pd.DataFrame:
         """Normaliza los nombres de campos compactos de la API al esquema CSV."""
-        opener = gzip.open if self._path.suffix == ".gz" else open
+        opener = gzip.open if self._path.suffix.lower() == ".gz" else open
         records = []
         try:
             with opener(self._path, "rt", encoding="utf-8") as source:

@@ -38,6 +38,14 @@ def test_empty_csv_is_domain_error(tmp_path):
         load(path)
 
 
+@pytest.mark.parametrize("extension", ["csv", "json"])
+def test_invalid_encoding_is_domain_error(tmp_path, extension):
+    path = tmp_path / f"bad.{extension}"
+    path.write_bytes(b"\xff")
+    with pytest.raises(DataLoadError):
+        load(path)
+
+
 def test_unsupported_format(tmp_path):
     with pytest.raises(DataLoadError, match="Formato no soportado"):
         load(tmp_path / "ventas.xlsx")
